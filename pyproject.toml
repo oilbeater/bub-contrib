@@ -1,0 +1,17 @@
+[project]
+name = "bub-contrib"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "bub",
+    "bub-tg-feed",
+]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+[tool.uv.sources]
+bub = { git = "https://github.com/bubbuild/bub.git", rev = "frost/bub-framework" }
+bub-tg-feed = { workspace = true }
