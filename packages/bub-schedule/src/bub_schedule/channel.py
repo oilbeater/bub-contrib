@@ -13,9 +13,9 @@ class ScheduleChannel(Channel):
     async def start(self, stop_event: Event) -> None:
         loop = asyncio.get_running_loop()
         loop.call_soon_threadsafe(self.scheduler.start)
-        logger.info("channel.schedule started")
+        logger.info("schedule.start complete")
 
     async def stop(self) -> None:
         loop = asyncio.get_running_loop()
         loop.call_soon_threadsafe(self.scheduler.shutdown)
-        logger.info("channel.schedule stopped")
+        logger.info("schedule.stop complete")
