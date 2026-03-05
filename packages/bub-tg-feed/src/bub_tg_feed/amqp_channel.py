@@ -331,13 +331,14 @@ class AMQPChannel(Channel):
 
     def is_mentioned(self, payload: dict[str, Any]) -> bool:
         _, content, metadata = _extract_prompt_parts(payload)
+        content = content.lower()
         if "bub" in content:
             return True
 
         if self._me is not self._missing and self._me is not None:
             username = self._me.get("username", "").lower()
             userid = str(self._me.get("id", ""))
-            if username and f"@{username}" in content.lower():
+            if username and f"@{username}" in content:
                 return True
 
             reply_to = metadata.get("reply_to_message")
@@ -376,14 +377,15 @@ class AMQPChannel(Channel):
         chat_id, content, metadata = _extract_prompt_parts(payload)
         if not chat_id:
             chat_id = "unknown_chat"
-        session_id = f"{self.name}:{chat_id}"
+        channel = "telegram"
+        session_id = f"{channel}:{chat_id}"
         if content.strip().startswith("/bub "):
             content = content.strip()[5:]
         if content.strip().startswith(","):
             return ChannelMessage(
                 session_id=session_id,
                 content=content,
-                channel=self.name,
+                channel=channel,
                 chat_id=chat_id,
                 kind="command",
             )
@@ -391,11 +393,10 @@ class AMQPChannel(Channel):
         message = ChannelMessage(
             session_id=session_id,
             content=content,
-            channel=self.name,
+            channel=channel,
             chat_id=chat_id,
             is_active=self.is_mentioned(payload),
             lifespan=self.typing_indicator(chat_id),
-            output_channel="telegram",
         )
         return message
 
