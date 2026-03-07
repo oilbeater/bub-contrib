@@ -14,8 +14,11 @@ Contrib packages for the `bub` ecosystem.
   - Bub plugin entry point: `schedule`
   - Provides scheduling channel/tools backed by APScheduler with a JSON job store.
 - `packages/bub-discord`
-  - Provides a Discord channel adapter (`DiscordChannel`) for Bub message IO.
-  - Note: this package currently does not expose a Bub plugin entry point.
+  - Bub plugin entry point: `discord`
+  - Provides a Discord channel adapter for Bub message IO.
+- `packages/bub-web-search`
+  - Provides a `web.search` tool backed by the Ollama web search API.
+  - Registers the tool only when `BUB_SEARCH_OLLAMA_API_KEY` is configured.
 
 ## Prerequisites
 
@@ -24,7 +27,7 @@ Contrib packages for the `bub` ecosystem.
 
 ## Usage
 
-To install invidual package, run:
+To install an individual package, run:
 
 ```bash
 uv pip install git+https://github.com/bubbuild/bub-contrib.git#subdirectory=packages/bub-schedule

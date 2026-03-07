@@ -10,6 +10,7 @@ dependencies = [
     "bub-discord",
     "bub-schedule",
     "bub-tg-feed",
+    "bub-web-search",
 ]
 
 [tool.uv.workspace]
@@ -21,3 +22,4 @@ bub-tg-feed = { workspace = true }
 bub-codex = { workspace = true }
 bub-discord = { workspace = true }
 bub-schedule = { workspace = true }
+bub-web-search = { workspace = true }
