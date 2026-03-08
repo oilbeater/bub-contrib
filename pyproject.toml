@@ -13,6 +13,7 @@ dependencies = [
     "bub-tapestore-sqlite",
     "bub-tg-feed",
     "bub-web-search",
+    "bub-feishu",
 ]
 
 [tool.uv.workspace]
@@ -27,3 +28,4 @@ bub-schedule = { workspace = true }
 bub-tapestore-sqlalchemy = { workspace = true }
 bub-tapestore-sqlite = { workspace = true }
 bub-web-search = { workspace = true }
+bub-feishu = { workspace = true }
