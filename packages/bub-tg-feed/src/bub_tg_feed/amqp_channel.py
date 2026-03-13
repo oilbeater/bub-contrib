@@ -201,6 +201,8 @@ def _extract_prompt_parts(
     caption: str | None = None
     if payload.get("has_media") and isinstance(payload.get("media"), dict):
         content, media_meta, caption = _build_telegram_like_media(payload)
+    elif isinstance(payload.get("text_html"), str):
+        content = payload["text_html"].strip()
     elif isinstance(payload.get("text"), str):
         content = payload["text"].strip()
 
@@ -340,6 +342,9 @@ class AMQPChannel(Channel):
             username = self._me.get("username", "").lower()
             userid = str(self._me.get("id", ""))
             if username and f"@{username}" in content:
+                return True
+
+            if userid and f"id={userid}" in content:
                 return True
 
             reply_to = metadata.get("reply_to_message")
