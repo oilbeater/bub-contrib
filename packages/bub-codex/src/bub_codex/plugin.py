@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import asyncio
 import contextlib
 import json
@@ -95,14 +97,18 @@ async def run_model(prompt: str, session_id: str, state: State) -> str:
         process = await asyncio.create_subprocess_exec(
             *command,
             stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
             cwd=str(workspace),
         )
-        stdout, _ = await process.communicate()
+        stdout, stderr = await process.communicate()
     output_blocks: list[str] = []
     if stdout:
         output_blocks.append(stdout.decode())
-        first_line = stdout.decode().splitlines()[0]
-        if "thread_id" in first_line:
-            thread_id = json.loads(first_line)["thread_id"]
-            _save_thread_id(session_id, thread_id, state)
+    if stderr:
+        stderr_text = stderr.decode()
+        for line in stderr_text.splitlines():
+            if line.startswith("session id:"):
+                thread_id = line.split(":", 1)[1].strip()
+                _save_thread_id(session_id, thread_id, state)
+                break
     return "\n".join(output_blocks)
