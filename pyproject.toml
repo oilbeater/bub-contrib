@@ -10,6 +10,7 @@ dependencies = [
     "bub-discord",
     "bub-dingtalk",
     "bub-github-copilot",
+    "bub-kimi",
     "bub-qq",
     "bub-schedule",
     "bub-tapestore-sqlalchemy",
@@ -33,6 +34,7 @@ bub-codex = { workspace = true }
 bub-discord = { workspace = true }
 bub-dingtalk = { workspace = true }
 bub-github-copilot = { workspace = true }
+bub-kimi = { workspace = true }
 bub-qq = { workspace = true }
 bub-schedule = { workspace = true }
 bub-tapestore-sqlalchemy = { workspace = true }
