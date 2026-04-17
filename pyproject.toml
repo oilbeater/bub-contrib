@@ -9,6 +9,7 @@ dependencies = [
     "bub-codex",
     "bub-discord",
     "bub-dingtalk",
+    "bub-eye",
     "bub-github-copilot",
     "bub-qq",
     "bub-schedule",
@@ -32,6 +33,7 @@ bub-tg-feed = { workspace = true }
 bub-codex = { workspace = true }
 bub-discord = { workspace = true }
 bub-dingtalk = { workspace = true }
+bub-eye = { workspace = true }
 bub-github-copilot = { workspace = true }
 bub-qq = { workspace = true }
 bub-schedule = { workspace = true }
